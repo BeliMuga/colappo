@@ -16,11 +16,7 @@ import { FigureCard } from "@/components/figure-card";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
-import {
-  BottomTabInset,
-  MaxContentWidth,
-  Spacing,
-} from "@/constants/theme";
+import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { getFigures } from "@/services/figure-service";
 import { Figure } from "@/types/figure";
 import { useEffect, useState } from "react";
@@ -59,30 +55,21 @@ import { useEffect, useState } from "react";
 }
 
 export default function HomeScreen() {
-  const [modalVisible, setModalVisible] =
-    useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState("");
   const [anime, setAnime] = useState("");
-  const [collection, setCollection] =
-    useState("");
+  const [collection, setCollection] = useState("");
 
-  const [description, setDescription] =
-    useState("");
+  const [description, setDescription] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [depth, setDepth] = useState("");
   const placeholderColor = useTheme();
-  const [imageUrl, setImage] = useState<
-    string | null
-  >(null);
-  const [figures, setFigures] = useState<
-    Figure[]
-  >([]);
-  const [selectedFigure, setSelectedFigure] =
-    useState<Figure | null>(null);
+  const [imageUrl, setImage] = useState<string | null>(null);
+  const [figures, setFigures] = useState<Figure[]>([]);
+  const [selectedFigure, setSelectedFigure] = useState<Figure | null>(null);
 
-  const [detailsVisible, setDetailsVisible] =
-    useState(false);
+  const [detailsVisible, setDetailsVisible] = useState(false);
   const handleFigurePress = (figure: Figure) => {
     setSelectedFigure(figure);
     setDetailsVisible(true);
@@ -98,12 +85,11 @@ export default function HomeScreen() {
   };
 
   const pickImage = async () => {
-    const result =
-      await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ["images"],
-        allowsEditing: true,
-        quality: 1,
-      });
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      quality: 1,
+    });
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -126,21 +112,14 @@ export default function HomeScreen() {
         <ScrollView>
           <ThemedView style={styles.heroSection}>
             <AnimatedIcon />
-            <ThemedText
-              type="title"
-              style={styles.title}
-            >
+            <ThemedText type="title" style={styles.title}>
               Empieza a&nbsp;Coleccionar
             </ThemedText>
             <Pressable
               style={styles.button}
-              onPress={() =>
-                setModalVisible(true)
-              }
+              onPress={() => setModalVisible(true)}
             >
-              <ThemedText type="smallBold">
-                Añade tu figura
-              </ThemedText>
+              <ThemedText type="smallBold">Añade tu figura</ThemedText>
             </Pressable>
           </ThemedView>
           <ThemedView style={styles.figureList}>
@@ -196,26 +175,15 @@ export default function HomeScreen() {
           >
             <Pressable
               style={styles.overlay}
-              onPress={() =>
-                setModalVisible(false)
-              }
+              onPress={() => setModalVisible(false)}
             >
-              <Pressable
-                onPress={(e) =>
-                  e.stopPropagation()
-                }
-              >
-                <ThemedView
-                  type="backgroundNone"
-                  style={styles.modalSection}
-                >
+              <Pressable onPress={(e) => e.stopPropagation()}>
+                <ThemedView type="backgroundNone" style={styles.modalSection}>
                   <ThemedView
                     type="backgroundElement"
                     style={styles.modalContainer}
                   >
-                    <ThemedText type="default">
-                      Añade tu figura
-                    </ThemedText>
+                    <ThemedText type="default">Añade tu figura</ThemedText>
                     {imageUrl && (
                       <Image
                         source={{ uri: imageUrl }}
@@ -226,70 +194,51 @@ export default function HomeScreen() {
                         }}
                       />
                     )}
-                    <Pressable
-                      onPress={pickImage}
-                      style={styles.button}
-                    >
-                      <ThemedText>
-                        Selecciona una imagen
-                      </ThemedText>
+                    <Pressable onPress={pickImage} style={styles.button}>
+                      <ThemedText>Selecciona una imagen</ThemedText>
                     </Pressable>
 
                     <TextInput
                       placeholder="Nombre de la figura"
-                      placeholderTextColor={
-                        placeholderColor.textSecondary
-                      }
+                      placeholderTextColor={placeholderColor.textSecondary}
                       value={name}
                       onChangeText={setName}
                       style={[
                         styles.input,
                         {
-                          color:
-                            placeholderColor.text,
+                          color: placeholderColor.text,
                         },
                       ]}
                     />
 
                     <TextInput
                       placeholder="Anime"
-                      placeholderTextColor={
-                        placeholderColor.textSecondary
-                      }
+                      placeholderTextColor={placeholderColor.textSecondary}
                       value={anime}
                       onChangeText={setAnime}
                       style={[
                         styles.input,
                         {
-                          color:
-                            placeholderColor.text,
+                          color: placeholderColor.text,
                         },
                       ]}
                     />
 
                     <TextInput
                       placeholder="Colección"
-                      placeholderTextColor={
-                        placeholderColor.textSecondary
-                      }
+                      placeholderTextColor={placeholderColor.textSecondary}
                       value={collection}
                       onChangeText={setCollection}
                       style={[
                         styles.input,
                         {
-                          color:
-                            placeholderColor.text,
+                          color: placeholderColor.text,
                         },
                       ]}
                     />
 
-                    <ThemedText type="smallBold">
-                      Tamaño
-                    </ThemedText>
-                    <ThemedView
-                      type="backgroundElement"
-                      style={styles.sizeRow}
-                    >
+                    <ThemedText type="smallBold">Tamaño</ThemedText>
+                    <ThemedView type="backgroundElement" style={styles.sizeRow}>
                       <TextInput
                         placeholder="Ancho"
                         value={width}
@@ -298,13 +247,10 @@ export default function HomeScreen() {
                         style={[
                           styles.sizeInput,
                           {
-                            color:
-                              placeholderColor.text,
+                            color: placeholderColor.text,
                           },
                         ]}
-                        placeholderTextColor={
-                          placeholderColor.textSecondary
-                        }
+                        placeholderTextColor={placeholderColor.textSecondary}
                       />
 
                       <TextInput
@@ -315,13 +261,10 @@ export default function HomeScreen() {
                         style={[
                           styles.sizeInput,
                           {
-                            color:
-                              placeholderColor.text,
+                            color: placeholderColor.text,
                           },
                         ]}
-                        placeholderTextColor={
-                          placeholderColor.textSecondary
-                        }
+                        placeholderTextColor={placeholderColor.textSecondary}
                       />
 
                       <TextInput
@@ -332,31 +275,23 @@ export default function HomeScreen() {
                         style={[
                           styles.sizeInput,
                           {
-                            color:
-                              placeholderColor.text,
+                            color: placeholderColor.text,
                           },
                         ]}
-                        placeholderTextColor={
-                          placeholderColor.textSecondary
-                        }
+                        placeholderTextColor={placeholderColor.textSecondary}
                       />
                     </ThemedView>
 
                     <TextInput
                       placeholder="Descripción"
-                      placeholderTextColor={
-                        placeholderColor.textSecondary
-                      }
+                      placeholderTextColor={placeholderColor.textSecondary}
                       value={description}
-                      onChangeText={
-                        setDescription
-                      }
+                      onChangeText={setDescription}
                       style={[
                         styles.input,
                         {
                           height: 100,
-                          color:
-                            placeholderColor.text,
+                          color: placeholderColor.text,
                         },
                       ]}
                       multiline
@@ -367,13 +302,9 @@ export default function HomeScreen() {
                     >
                       <Pressable
                         style={styles.button}
-                        onPress={() =>
-                          setModalVisible(false)
-                        }
+                        onPress={() => setModalVisible(false)}
                       >
-                        <ThemedText type="small">
-                          Cancelar
-                        </ThemedText>
+                        <ThemedText type="small">Cancelar</ThemedText>
                       </Pressable>
                       <Pressable
                         style={styles.button}
@@ -383,12 +314,9 @@ export default function HomeScreen() {
                             anime,
                             collection,
                             size: {
-                              width:
-                                Number(width),
-                              height:
-                                Number(height),
-                              depth:
-                                Number(depth),
+                              width: Number(width),
+                              height: Number(height),
+                              depth: Number(depth),
                             },
                             description,
                             imageUrl,
@@ -399,9 +327,7 @@ export default function HomeScreen() {
                           setModalVisible(false);
                         }}
                       >
-                        <ThemedText type="small">
-                          Siguiente
-                        </ThemedText>
+                        <ThemedText type="small">Siguiente</ThemedText>
                       </Pressable>
                     </ThemedView>
                   </ThemedView>
@@ -420,64 +346,33 @@ export default function HomeScreen() {
           >
             <Pressable
               style={styles.overlay}
-              onPress={() =>
-                setDetailsVisible(false)
-              }
+              onPress={() => setDetailsVisible(false)}
             >
-              <Pressable
-                onPress={(e) =>
-                  e.stopPropagation()
-                }
-              >
-                <ThemedView
-                  type="backgroundNone"
-                  style={styles.modalSection}
-                >
+              <Pressable onPress={(e) => e.stopPropagation()}>
+                <ThemedView type="backgroundNone" style={styles.modalSection}>
                   {selectedFigure && (
                     <ThemedView
                       type="backgroundElement"
-                      style={
-                        styles.modalContainer
-                      }
+                      style={styles.modalContainer}
                     >
                       <ThemedText type="title">
                         {selectedFigure.name}
                       </ThemedText>
 
-                      <ThemedText>
-                        {selectedFigure.anime}
-                      </ThemedText>
+                      <ThemedText>{selectedFigure.anime}</ThemedText>
 
-                      <ThemedText>
-                        {
-                          selectedFigure.collection
-                        }
+                      <ThemedText>{selectedFigure.collection}</ThemedText>
+
+                      <ThemedText type="small">
+                        {selectedFigure.description}
                       </ThemedText>
 
                       <ThemedText type="small">
-                        {
-                          selectedFigure.description
-                        }
-                      </ThemedText>
-
-                      <ThemedText type="small">
-                        Anchura:{" "}
-                        {
-                          selectedFigure.size
-                            .width
-                        }
+                        Anchura: {selectedFigure.size.width}
                         <br />
-                        Altura:{" "}
-                        {
-                          selectedFigure.size
-                            .height
-                        }
+                        Altura: {selectedFigure.size.height}
                         <br />
-                        Profundidad:{" "}
-                        {
-                          selectedFigure.size
-                            .depth
-                        }
+                        Profundidad: {selectedFigure.size.depth}
                       </ThemedText>
 
                       {selectedFigure.imageUrl && (
@@ -495,13 +390,9 @@ export default function HomeScreen() {
 
                       <Pressable
                         style={styles.button}
-                        onPress={() =>
-                          setDetailsVisible(false)
-                        }
+                        onPress={() => setDetailsVisible(false)}
                       >
-                        <ThemedText>
-                          Cerrar
-                        </ThemedText>
+                        <ThemedText>Cerrar</ThemedText>
                       </Pressable>
                     </ThemedView>
                   )}
